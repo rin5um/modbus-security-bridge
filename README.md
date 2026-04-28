@@ -37,6 +37,9 @@ The PLC controls each valve's opening degree via Modbus TCP.
 For example, the PLC sends FC4 (Read Input Registers) to read the current valve state,
 and FC6 (Write Single Register) to update the holding register and change the valve position.
 
+## Modbus Protocol Analysis
+See [docs/modbus_analysis.md](docs/modbus_analysis.md) for detailed packet analysis.
+
 ## Attack Demonstration
 Executed `attack_demonstration.py` from Kali Linux using FC6 (Write Single Register) 
 to send abnormal values at high speed.
