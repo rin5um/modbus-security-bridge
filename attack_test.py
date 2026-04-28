@@ -4,7 +4,7 @@ from pymodbus.client import ModbusTcpClient   # ライブラリpymodbusをイン
 
 client10 = ModbusTcpClient('192.168.95.10')   # クライアントの作成, ChemicalPlant(192.168.95.10 ~ 192.168.95.13)
 client11 = ModbusTcpClient('192.168.95.11')
-client12 = ModbusTcpClinet('192.168.95.12')
+client12 = ModbusTcpClient('192.168.95.12')
 client13 = ModbusTcpClient('192.168.95.13')
 
 try: 
