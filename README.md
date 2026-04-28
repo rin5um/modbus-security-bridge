@@ -20,9 +20,9 @@ PLC (192.168.95.2)
 ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 
 ## Attack Demonstration
-Executed `attack_test.py` from Kali Linux using FC6 (Write Single Register) to send abnormal values (0 and 65535) at high speed, causing the chemical plant process to fail.
+Executed `attack_demonstration.py` from Kali Linux using FC6 (Write Single Register) to send abnormal values (0 and 65535) at high speed, causing the chemical plant process to fail.
 
-## Network Architecture ()
+## Network Architecture (Bridge Setup)
 192.168.95.0/24
 
 PLC (192.168.95.2)
