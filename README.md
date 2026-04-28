@@ -8,6 +8,7 @@ A security bridge that inspects Modbus TCP packets and blocks unauthorized comma
 - VirtualBox
 - Kali Linux
 - GRFICSv3 (Industrial Control System Simulator)
+- Wireshark
 
 ## Network Architecture (Attack Demonstration)
 192.168.95.0/24
