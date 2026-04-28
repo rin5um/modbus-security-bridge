@@ -28,7 +28,7 @@ ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 - Any Modbus write command from unauthorized IP
 
 ## Attack Demonstration
-Executed attack code from Kali Linux using FC6 to send abnormal values (0 and 60000) at high speed, causing the chemical plant process to fail.
+Executed `attack_test.py` from Kali Linux using FC6 (Write Single Register) to send abnormal values (0 and 65535) at high speed, causing the chemical plant process to fail.
 
 ## Status
 Work in progress. Basic allow/block logic implemented.
