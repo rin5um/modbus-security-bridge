@@ -38,7 +38,14 @@ For example, the PLC sends FC4 (Read Input Registers) to read the current valve 
 and FC6 (Write Single Register) to update the holding register and change the valve position.
 
 ## Attack Demonstration
-Executed `attack_demonstration.py` from Kali Linux using FC6 (Write Single Register) to send abnormal values (0 and 65535) at high speed, causing the chemical plant process to fail.
+Executed `attack_demonstration.py` from Kali Linux using FC6 (Write Single Register) 
+to send abnormal values at high speed.
+
+- Input valves (192.168.95.10, 192.168.95.11): set to 65535 (fully open)
+- Output valves (192.168.95.12, 192.168.95.13): set to 0 (fully closed)
+
+This causes excessive material to flow into the reactor while blocking output,
+rapidly increasing internal pressure and causing the reactor to explode.
 
 | Normal | After Attack |
 |---|---|
