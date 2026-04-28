@@ -22,6 +22,8 @@ Kali Linux - Security Bridge (192.168.95.100)
  
 ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 
+Kali Linux is placed inline between the Chemical Plant and PLC using ARP spoofing. This allows the security bridge to inspect and block Modbus packets in real time.
+
 ## Blocking Rules
 - FC6 (Write Single Register) with abnormal values
 - FC16 (Write Multiple Registers) with abnormal values
