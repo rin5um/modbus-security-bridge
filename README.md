@@ -38,6 +38,17 @@ ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 ARP spoofing was used to place Kali Linux inline between the PLC and Chemical Plant.
 Confirmed that Modbus traffic passes through Kali Linux using Wireshark.
 
+## IP Forwarding Verification
+To confirm that Kali Linux is properly placed inline, 
+IP forwarding was tested in two states.
+
+- `pcap/arpspoof_ip_forward_0.pcapng` : IP forwarding disabled.
+  Modbus traffic between PLC and Chemical Plant was interrupted,
+  confirming that traffic passes through Kali Linux.
+
+- `pcap/arpspoof_ip_forward_1.pcapng` : IP forwarding enabled.
+  Modbus traffic was successfully forwarded through Kali Linux.
+
 ## Blocking Rules
 - FC6 (Write Single Register) with abnormal values
 - FC16 (Write Multiple Registers) with abnormal values
