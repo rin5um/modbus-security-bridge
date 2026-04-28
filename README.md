@@ -20,13 +20,29 @@ ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 
 Kali Linux (192.168.95.100) ──attack─→ ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 
+## GRFICS Chemical Plant Overview
+
+The chemical plant simulation is visualized via browser at `http://192.168.95.10`.
+
+Each valve is assigned an IP address and controlled by the PLC via Modbus TCP.
+
+| IP Address | Location |
+|---|---|
+| 192.168.95.10 | Top-left valve (reactor input) |
+| 192.168.95.11 | Bottom-left valve (reactor input) |
+| 192.168.95.12 | Top-right valve (purge output) |
+| 192.168.95.13 | Bottom-right valve (product output) |
+
+The PLC controls each valve's opening degree via Modbus TCP.
+For example, the PLC sends FC4 (Read Input Registers) to read the current valve state,
+and FC6 (Write Single Register) to update the holding register and change the valve position.
+
 ## Attack Demonstration
 Executed `attack_demonstration.py` from Kali Linux using FC6 (Write Single Register) to send abnormal values (0 and 65535) at high speed, causing the chemical plant process to fail.
 
-The chemical plant simulation is visualized via browser at `http://192.168.95.10`.
-The following screenshot shows the plant after the attack.
-
-![attack result](imgs/attack_result.png)
+| Normal | After Attack |
+|---|---|
+| ![normal](imgs/normal.png) | ![attacked](imgs/attacked.png) |
 
 ## Network Architecture (Bridge Setup)
 192.168.95.0/24
