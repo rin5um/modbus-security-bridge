@@ -11,7 +11,8 @@ A security bridge that inspects Modbus TCP packets and blocks unauthorized comma
 
 ## Network Architecture (Attack Demonstration)
 192.168.95.0/24
-Kali Linux (192.168.95.100)
+
+Kali Linux (192.168.95.100) ─-attack-→ ChemicalPlant (192.168.95.10 ~ 192.168.95.13)
 
 PLC (192.168.95.2)
 
