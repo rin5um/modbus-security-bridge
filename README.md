@@ -42,7 +42,7 @@ and FC6 (Write Single Register) to update the holding register and change the va
 See [docs/modbus_analysis.md](docs/modbus_analysis.md) for detailed packet analysis.
 
 ## Attack Demonstration
-Executed `attack_demonstration.py` from Kali Linux using FC6 (Write Single Register) 
+Executed `attack_demo.py` from Kali Linux using FC6 (Write Single Register) 
 to send abnormal values at high speed.
 
 - Input valves (192.168.95.10, 192.168.95.11): set to 65535 (fully open)
