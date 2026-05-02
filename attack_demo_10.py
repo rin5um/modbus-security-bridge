@@ -1,6 +1,5 @@
 from pymodbus.client import ModbusTcpClient
 
-# Kali自身に送る（ARPスプーフィング中なら.10宛てでOK）
 client10 = ModbusTcpClient('192.168.95.10')
 
 try: 
