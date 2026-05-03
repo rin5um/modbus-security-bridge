@@ -82,13 +82,23 @@ IP forwarding was tested in two states.
 - `pcap/arpspoof_ip_forward_1.pcapng` : IP forwarding enabled.
   Modbus traffic was successfully forwarded through Kali Linux.
 
-## Blocking Rules
-- FC6 (Write Single Register) with abnormal values
-- FC16 (Write Multiple Registers) with abnormal values
-- Any Modbus write command from unauthorized IP
+## Security Bridge Implementation
 
-## Status
-Security bridge implementation is in progress.
+`bridge.py` acts as an inline Modbus TCP security bridge between the PLC and valve (192.168.95.10).
+In this experiment, ARP spoofing was applied only to 192.168.95.10.
+
+### How it works
+1. Kali Linux is placed inline between PLC (192.168.95.2) and valve (192.168.95.10) using ARP spoofing
+2. Modbus packets destined for 192.168.95.10 are intercepted by the bridge
+3. Each packet is inspected before forwarding to the valve
+
+### Blocking Rules (implemented)
+- Unauthorized source IP (not 192.168.95.2) → blocked
+- FC6 with abnormal values (≥60000 or =0) → blocked
+
+### Experiment Result
+Confirmed that attack packets from unauthorized IP were blocked.
+See `imgs/blocked.png` for the bridge log output.
 
 ## References
 - GRFICS: https://github.com/mrideout/GRFICSv3
