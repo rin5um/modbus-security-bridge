@@ -82,6 +82,27 @@ IP forwarding was tested in two states.
 - `pcap/arpspoof_ip_forward_1.pcapng` : IP forwarding enabled.
   Modbus traffic was successfully forwarded through Kali Linux.
 
+In the bridge experiment, IP forwarding was set to 0 so that the OS does not forward packets automatically.
+The bridge handles all forwarding instead.
+
+## Bridge Setup Commands
+
+Run the following commands before starting the bridge:
+
+```bash
+# Clear existing iptables rules
+sudo iptables -t nat -F
+
+# Redirect incoming Modbus TCP packets to the bridge
+sudo iptables -t nat -A PREROUTING -i eth1 -p tcp --dport 502 -j REDIRECT --to-port 502
+
+# Disable IP forwarding (let the bridge handle forwarding)
+sudo sh -c 'echo 0 > /proc/sys/net/ipv4/ip_forward'
+
+# Start the bridge
+sudo python3 bridge.py
+```
+
 ## Security Bridge Implementation
 
 `bridge.py` acts as an inline Modbus TCP security bridge between the PLC and valve (192.168.95.10).
