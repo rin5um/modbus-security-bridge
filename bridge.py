@@ -12,38 +12,38 @@ VALVE_PORT = 502
 ALLOWED_IPS = ['192.168.95.2']
 
 
-
-
 # inspect関数はどのようなフィルタリングルールを定義している
 def inspect(data, src_ip):
     # パケットが短すぎる場合は通す
     if len(data) < 8:
         return True
 
-    # 送信元IPチェック, Attack_demonstration.pyは送信元がkaliのIPなのでおそらくこれで遮断できる
+    # 1. 送信元IPチェック, Attack_demonstration.pyは送信元がkaliのIPアドレスなのでこれで遮断できる
     if src_ip not in ALLOWED_IPS:
         print(f'[BLOCKED] Unauthorized IP: {src_ip}')
         return False
 
     fc = data[7]  # ファンクションコード, Wiresharkの Modbus TCP以上の値がdataに格納される 右下の画面と対応を考えればわかる
 
-    # Wiresharkでは16進数06となっている 10進数6なので fc == 6 と書けばOK
+    # 2. FC6 (Single Register Write) のチェック
     if fc == 6:
         value = int.from_bytes(data[10:12], 'big')
         if value >= 60000 or value == 0:
             print(f'[BLOCKED] FC6 abnormal value: {value}')
             return False
         print(f'[ALLOW] FC6 value: {value}')
-    
-    # Wiresharkでは16進数10となっている 10進数16なので fc == 16 と書けばOK
-    if fc == 16:
-        print(f'[BLOCKED] FC16 detected')
-        return False
+
+    # 3. FC16 (Multiple Registers Write) のチェック
+    elif fc == 16:
+        print(f'[ALLOW] FC16 detected from {src_ip}')
+        return True
+
+    # 4. FC4 (Read Input Registers) などの読み取り専用パケット
+    else:
+        # 読み取り命令は基本的に無害なので通す
+        return True
 
     return True
-
-
-
 
 
 def handle_connection(conn, addr):
@@ -92,9 +92,6 @@ def handle_connection(conn, addr):
         conn.close()
         valve_sock.close()
         print(f'[INFO] Connection closed: {src_ip}')
-
-
-
 
 
 def main():
