@@ -30,10 +30,10 @@ def inspect(data, src_ip):
     # Wiresharkでは16進数06となっている 10進数6なので fc == 6 と書けばOK
     if fc == 6:
         value = int.from_bytes(data[10:12], 'big')
-        print(f'[ALLOW] FC6 value: {value}')
         if value >= 60000 or value == 0:
             print(f'[BLOCKED] FC6 abnormal value: {value}')
             return False
+        print(f'[ALLOW] FC6 value: {value}')
     
     # Wiresharkでは16進数10となっている 10進数16なので fc == 16 と書けばOK
     if fc == 16:
