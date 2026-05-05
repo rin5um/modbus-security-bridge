@@ -121,6 +121,9 @@ In this experiment, ARP spoofing was applied only to 192.168.95.10.
 Confirmed that attack packets from unauthorized IP were blocked.
 See `imgs/blocked.png` for the bridge log output.
 
+## Experiment Report (Japanese)
+See [docs/experiment_report.pdf](docs/experiment_report.pdf) for detailed experiment report in Japanese.
+
 ## References
 - GRFICS: https://github.com/mrideout/GRFICSv3
 - 福田 敏博, 「現場で役立つOTの仕組みとセキュリティ 演習で学ぶ! わかる! リスク分析と対策」, 翔泳社, 2021
