@@ -117,7 +117,7 @@ def main():
         # 第二引数はhandle_connection関数に必要な2個の引数をタプルで渡す
         thread = threading.Thread(target=handle_connection, args=(conn, addr))
         
-        # 本体が終了したら一緒に死んでいいよ, start()メソッドでスレッドが別の時間軸で動き出す
+        # 本体が終了したら一緒に終了, start()メソッドでスレッドが別の時間軸で動き出す
         thread.daemon = True
         thread.start()
 
